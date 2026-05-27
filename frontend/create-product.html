@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>New product · Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <h1><a href="index.html" class="header-link">Product Dashboard</a></h1>
+</header>
+<main>
+    <section class="form-card">
+        <a href="index.html" class="back-link">← Back to all products</a>
+        <h2>New product</h2>
+        <form id="create-product-form">
+            <label>Name
+                <input name="name" required>
+            </label>
+            <label>Category
+                <select name="category_id" required></select>
+            </label>
+            <label>Price (DKK)
+                <input name="price" type="number" step="1" min="0" required>
+            </label>
+            <label>Stock
+                <input name="stock" type="number" min="0" value="0" required>
+            </label>
+            <label>Release date
+                <input name="release_date" type="date" required>
+            </label>
+            <label>Specs (JSON, optional)
+                <textarea name="specs" rows="3" placeholder='{"cpu":"i7"}'>{}</textarea>
+            </label>
+            <div class="form-row">
+                <button type="submit">Create product</button>
+                <a href="index.html" class="btn-secondary">Cancel</a>
+            </div>
+        </form>
+        <p id="result" class="hidden"></p>
+    </section>
+</main>
+<script src="create-product.js"></script>
+</body>
+</html>

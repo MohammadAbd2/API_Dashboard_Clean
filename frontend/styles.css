@@ -1,0 +1,369 @@
+* { box-sizing: border-box; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    margin: 0;
+    background: #f5f5f7;
+    color: #222;
+}
+
+header {
+    background: #1a1a2e;
+    color: white;
+    padding: 1.5rem 2rem;
+}
+
+header h1 { margin: 0; font-size: 1.4rem; }
+
+main {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.filters {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.filters label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.filters select,
+.filters input {
+    margin-top: 0.25rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    min-width: 200px;
+    background: white;
+    font: inherit;
+    box-sizing: border-box;
+    height: 38px;
+}
+
+.filters input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.filters input[type="number"]::-webkit-inner-spin-button,
+.filters input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.table-wrap {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+#product-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+#product-table thead {
+    background: #f5f5f7;
+    text-align: left;
+}
+
+#product-table th {
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #555;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid #e3e3e6;
+}
+
+#product-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+#product-table tbody tr {
+    cursor: pointer;
+    transition: background 0.1s;
+}
+
+#product-table tbody tr:hover { background: #f9f9fb; }
+#product-table tbody tr:last-child td { border-bottom: none; }
+
+.num { text-align: right; }
+td.name { font-weight: 500; }
+td.price { font-weight: 600; color: #1a1a2e; }
+
+#empty-state {
+    padding: 1.5rem;
+    margin: 0;
+    color: #666;
+    text-align: center;
+}
+
+.hidden { display: none !important; }
+
+#product-detail {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.back-link {
+    display: inline-block;
+    color: #1a1a2e;
+    text-decoration: none;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+}
+
+.back-link:hover { text-decoration: underline; }
+
+.header-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.detail-price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a1a2e;
+}
+
+#detail-content pre {
+    background: #f5f5f7;
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+.review {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.review strong { color: #1a1a2e; }
+.review p { margin: 0.25rem 0 0; color: #555; }
+
+#review-form {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    max-width: 420px;
+}
+
+#review-form input,
+#review-form textarea {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font: inherit;
+}
+
+#review-form button {
+    padding: 0.6rem;
+    background: #1a1a2e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#review-form button:hover { background: #2a2a48; }
+
+.product-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin: 1rem 0 1.5rem;
+}
+
+.btn-secondary,
+.btn-danger {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    background: white;
+    color: #1a1a2e;
+    border-radius: 4px;
+    cursor: pointer;
+    font: inherit;
+}
+
+.btn-secondary:hover { background: #f5f5f7; }
+
+.btn-danger {
+    border-color: #c0392b;
+    color: #c0392b;
+}
+
+.btn-danger:hover {
+    background: #c0392b;
+    color: white;
+}
+
+#edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    max-width: 420px;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #f9f9fb;
+    border-radius: 6px;
+}
+
+#edit-form h4 { margin: 0; }
+
+#edit-form label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+    color: #555;
+    gap: 0.25rem;
+}
+
+#edit-form input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font: inherit;
+}
+
+.form-row {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.form-row button[type="submit"] {
+    padding: 0.55rem 1rem;
+    background: #1a1a2e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.review-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.review-delete {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 0.25rem;
+}
+
+.review-delete:hover { color: #c0392b; }
+
+.actions-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    justify-content: flex-end;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 0.55rem 1rem;
+    background: #1a1a2e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font: inherit;
+    cursor: pointer;
+}
+
+.btn-primary:hover { background: #2a2a48; }
+
+a.btn-secondary {
+    display: inline-block;
+    padding: 0.55rem 1rem;
+    background: white;
+    color: #1a1a2e;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    font: inherit;
+    cursor: pointer;
+}
+
+a.btn-secondary:hover { background: #f5f5f7; }
+
+.form-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    max-width: 540px;
+    margin: 0 auto;
+}
+
+.form-card h2 { margin-top: 0; }
+
+.form-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-card label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    color: #555;
+    gap: 0.35rem;
+}
+
+.form-card input,
+.form-card select,
+.form-card textarea {
+    padding: 0.55rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font: inherit;
+    background: white;
+}
+
+.form-card textarea {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9rem;
+}
+
+.form-card button[type="submit"] {
+    padding: 0.6rem 1.1rem;
+    background: #1a1a2e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font: inherit;
+}
+
+.form-card button[type="submit"]:hover { background: #2a2a48; }
+
+#result {
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+.result-ok { background: #e7f5ec; color: #1f6b3d; border: 1px solid #b6d8c1; }
+.result-error { background: #fdecea; color: #9b2c2c; border: 1px solid #f1c5c1; }
+

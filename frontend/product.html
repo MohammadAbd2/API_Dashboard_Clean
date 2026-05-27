@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Product · Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <h1><a href="index.html" class="header-link">Product Dashboard</a></h1>
+</header>
+<main>
+    <section id="product-detail">
+        <a href="index.html" class="back-link">← Back to all products</a>
+        <div id="detail-content"></div>
+        <div class="product-actions">
+            <button id="edit-toggle" class="btn-secondary">Edit</button>
+            <button id="delete-product" class="btn-danger">Delete</button>
+        </div>
+        <form id="edit-form" class="hidden">
+            <h4>Edit product</h4>
+            <label>Name <input name="name" required></label>
+            <label>Price (DKK) <input name="price" type="number" step="1" min="0" required></label>
+            <label>Stock <input name="stock" type="number" min="0" required></label>
+            <div class="form-row">
+                <button type="submit">Save changes</button>
+                <button type="button" id="edit-cancel" class="btn-secondary">Cancel</button>
+            </div>
+        </form>
+        <h3>Reviews</h3>
+        <div id="reviews-list"></div>
+        <form id="review-form">
+            <h4>Add a review</h4>
+            <input name="author_name" placeholder="Your name" required>
+            <input name="rating" type="number" min="1" max="5" placeholder="Rating 1–5" required>
+            <textarea name="comment" placeholder="Comment (optional)"></textarea>
+            <button type="submit">Submit review</button>
+        </form>
+    </section>
+</main>
+<script src="detail.js"></script>
+</body>
+</html>

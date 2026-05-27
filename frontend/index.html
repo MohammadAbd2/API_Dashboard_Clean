@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Product Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <h1>Product Dashboard</h1>
+</header>
+<main>
+    <section class="actions-bar">
+        <a href="create-product.html" class="btn-primary">+ New product</a>
+        <a href="create-category.html" class="btn-secondary">+ New category</a>
+    </section>
+    <section class="filters">
+        <label>
+            Category
+            <select id="category-filter">
+                <option value="">All</option>
+            </select>
+        </label>
+        <label>
+            Min price (DKK)
+            <input id="min-price" type="number" min="0" placeholder="Any">
+        </label>
+        <label>
+            Max price (DKK)
+            <input id="max-price" type="number" min="0" placeholder="Any">
+        </label>
+        <label>
+            Sort by
+            <select id="sort-select">
+                <option value="name:asc">Name (A–Z)</option>
+                <option value="name:desc">Name (Z–A)</option>
+                <option value="price:asc">Price (low to high)</option>
+                <option value="price:desc">Price (high to low)</option>
+                <option value="release_date:asc">Newest first</option>
+                <option value="release_date:desc">Oldest first</option>
+            </select>
+        </label>
+    </section>
+
+    <section class="table-wrap">
+        <table id="product-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th class="num">Price</th>
+                    <th class="num">Stock</th>
+                    <th>Released</th>
+                </tr>
+            </thead>
+            <tbody id="product-rows"></tbody>
+        </table>
+        <p id="empty-state" class="hidden">No products found.</p>
+    </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

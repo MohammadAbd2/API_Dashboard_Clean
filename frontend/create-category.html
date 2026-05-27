@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>New category · Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <h1><a href="index.html" class="header-link">Product Dashboard</a></h1>
+</header>
+<main>
+    <section class="form-card">
+        <a href="index.html" class="back-link">← Back to all products</a>
+        <h2>New category</h2>
+        <form id="create-category-form">
+            <label>Name
+                <input name="name" required>
+            </label>
+            <label>Slug
+                <input name="slug" required placeholder="e.g. headphones">
+            </label>
+            <label>Description
+                <textarea name="description" rows="3"></textarea>
+            </label>
+            <div class="form-row">
+                <button type="submit">Create category</button>
+                <a href="index.html" class="btn-secondary">Cancel</a>
+            </div>
+        </form>
+        <p id="result" class="hidden"></p>
+    </section>
+</main>
+<script src="create-category.js"></script>
+</body>
+</html>
