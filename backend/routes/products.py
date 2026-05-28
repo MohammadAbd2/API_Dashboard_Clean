@@ -9,13 +9,43 @@ from ..models import ProductCreate
 router = APIRouter(prefix="/products", tags=["products"])
 
 
+# Counting how many products there are
+@router.get("/count")
+def count_products(
+        category: int | None = None,
+        min_price: float | None = None,
+        max_price: float | None = None,
+):
+    where: list[str] = []
+    args: list = []
+
+    if category is not None:
+        args.append(category)
+        where.append("category_id = ?")
+    if min_price is not None:
+        args.append(min_price)
+        where.append("price >= ?")
+    if max_price is not None:
+        args.append(max_price)
+        where.append("price <= ?")
+
+    where_sql = ("WHERE " + " AND ".join(where)) if where else ""
+    query = f"SELECT COUNT(*) as total FROM products {where_sql}"
+
+    with get_conn() as conn:
+        row = conn.execute(query, args).fetchone()
+        # based on the DB we extract the result
+        total_count = row[0] if row else 0
+        return {"total": total_count}
+
+
 @router.get("")
 def list_products(
-    category: int | None = None,
-    sort: str = "name",
-    direction: str = "asc",
-    min_price: float | None = None,
-    max_price: float | None = None,
+        category: int | None = None,
+        sort: str = "name",
+        direction: str = "asc",
+        min_price: float | None = None,
+        max_price: float | None = None,
 ):
     sort_clause = build_sort_clause(sort, direction)
     where: list[str] = []
