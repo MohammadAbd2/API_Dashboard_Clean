@@ -58,9 +58,44 @@ async function fetchCategories() {
     }
 }
 
-categoryFilter.addEventListener("change", fetchProducts);
+categoryFilter.addEventListener("change", () => { fetchProducts(); fetchAveragePrice(); fetchMostExpensive(); });
 sortSelect.addEventListener("change", fetchProducts);
-minPriceInput.addEventListener("change", fetchProducts);
-maxPriceInput.addEventListener("change", fetchProducts);
+minPriceInput.addEventListener("change", () => { fetchProducts(); fetchAveragePrice(); fetchMostExpensive(); });
+maxPriceInput.addEventListener("change", () => { fetchProducts(); fetchAveragePrice(); fetchMostExpensive(); });
 
-fetchCategories().then(fetchProducts);
+fetchCategories().then(() => { fetchProducts(); fetchAveragePrice(); fetchMostExpensive(); });
+
+
+async function fetchAveragePrice() {
+    const category = categoryFilter.value;
+    const params = category ? `?category=${category}` : "";
+    const res = await fetch(`${API_BASE}/products/stats/average-price${params}`);
+    const data = await res.json();
+    let el = document.getElementById("avg-price-display");
+    if (!el) {
+        el = document.createElement("p");
+        el.id = "avg-price-display";
+        el.style.cssText = "text-align:right; color:#555; font-size:0.9rem; margin-bottom:0.5rem;";
+        document.querySelector(".table-wrap").before(el);
+    }
+    el.textContent = data.count === 0
+        ? ""
+        : `Average price: ${dkk.format(data.avg_price)}`;
+}
+
+async function fetchMostExpensive() {
+    const category = categoryFilter.value;
+    const params = category ? `?category=${category}` : "";
+    const res = await fetch(`${API_BASE}/products/stats/most-expensive${params}`);
+    const data = await res.json();
+    let el = document.getElementById("most-expensive-display");
+    if (!el) {
+        el = document.createElement("p");
+        el.id = "most-expensive-display";
+        el.style.cssText = "text-align:right; color:#555; font-size:0.9rem; margin-bottom:0.5rem;";
+        document.querySelector(".table-wrap").before(el);
+    }
+    el.textContent = data
+        ? `Most expensive item: ${data.name} - ${dkk.format(data.price)}`
+        : "";
+}

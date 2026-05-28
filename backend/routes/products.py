@@ -35,6 +35,30 @@ def list_products(
         rows = conn.execute(query, args).fetchall()
         return [row_to_dict(r) for r in rows]
 
+@router.get("/stats/average-price")
+def average_price(category: int | None = None):
+    where = "WHERE category_id = ?" if category is not None else ""
+    args = [category] if category is not None else []
+    with get_conn() as conn:
+        row = conn.execute(
+            f"SELECT AVG(price) as avg_price, COUNT(*) as count FROM products {where}",
+            args,
+        ).fetchone()
+        return {"avg_price": round(row[0] or 0, 2), "count": row[1]}
+
+@router.get("/stats/most-expensive")
+def most_expensive_product(category: int | None = None):
+    where = "WHERE category_id = ?" if category is not None else ""
+    args = [category] if category is not None else []
+    with get_conn() as conn:
+        row = conn.execute(
+            f"SELECT * FROM products {where} ORDER BY price DESC LIMIT 1",
+            args,
+        ).fetchone()
+        if row is None:
+            return None
+        return row_to_dict(row)
+
 
 @router.get("/{product_id}")
 def get_product(product_id: int):
@@ -77,3 +101,4 @@ def delete_product(product_id: int):
         conn.commit()
         if cur.rowcount == 0:
             raise HTTPException(status_code=404, detail="Product not found")
+
